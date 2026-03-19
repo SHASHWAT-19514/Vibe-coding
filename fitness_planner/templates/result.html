@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Personalized Plan - FitBuddie</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="container fade-in">
+        <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem;">
+            <div>
+                <h1 style="font-size: 2rem; background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">FitBuddie AI</h1>
+                <p style="color: var(--text-secondary);">Ready to crush it, {{ username }}?</p>
+            </div>
+            <a href="/" class="btn btn-secondary" style="font-size: 0.9rem; padding: 10px 20px;">Edit Info</a>
+        </header>
+
+        <main>
+            <!-- User Summary -->
+            <section class="glass-card" style="margin-bottom: 3rem; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2rem; border-radius: 16px;">
+                <div style="text-align: center;">
+                    <p style="color: var(--text-secondary); font-size: 0.8rem; text-transform: uppercase;">Goal</p>
+                    <p style="font-weight: 600; font-size: 1.2rem;">{{ goal }}</p>
+                </div>
+                <div style="text-align: center;">
+                    <p style="color: var(--text-secondary); font-size: 0.8rem; text-transform: uppercase;">Intensity</p>
+                    <p style="font-weight: 600; font-size: 1.2rem;">{{ intensity }}</p>
+                </div>
+                <div style="text-align: center;">
+                    <p style="color: var(--text-secondary); font-size: 0.8rem; text-transform: uppercase;">Status</p>
+                    <p style="font-weight: 600; font-size: 1.2rem; color: #43e97b;">AI Generated</p>
+                </div>
+            </section>
+
+            <!-- 7-Day Workout Grid -->
+            <h2 style="margin-bottom: 2rem;">7-Day Workout Schedule</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+                {% for day in workout_plan %}
+                <div class="glass-card" style="padding: 1.5rem; border-radius: 20px;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+                        <h3 style="color: #6366f1;">{{ day.day }}</h3>
+                        <i data-lucide="dumbbell" style="width: 18px; color: var(--text-secondary);"></i>
+                    </div>
+                    <h4 style="margin-bottom: 0.8rem; font-size: 1.1rem;">{{ day.title }}</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        {% for exercise in day.exercises %}
+                        <li style="font-size: 0.9rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; color: var(--text-secondary);">
+                            <div style="width: 4px; height: 4px; border-radius: 50%; background: #43e97b;"></div>
+                            {{ exercise }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Nutrition Tip Section -->
+            <section class="glass-card" style="margin-bottom: 4rem; background: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), var(--accent-gradient); color: #0f172a;">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <i data-lucide="info" style="color: #0f172a;"></i>
+                    <h2 style="color: #0f172a;">Nutrition Tip</h2>
+                </div>
+                <p style="font-size: 1.1rem; font-weight: 500;">{{ nutrition_tip }}</p>
+            </section>
+
+            <!-- Feedback Form -->
+            <section style="display: flex; justify-content: center;">
+                <div class="glass-card" style="width: 100%; max-width: 600px;">
+                    <h3 style="margin-bottom: 1.5rem;">How's it look?</h3>
+                    <form action="#" method="POST">
+                        <textarea id="feedback" name="feedback" rows="3" placeholder="Tell us if you want any adjustments..." style="margin-bottom: 1rem;"></textarea>
+                        <button type="button" class="btn btn-secondary" style="width: 100%;">
+                            Submit Feedback
+                        </button>
+                    </form>
+                </div>
+            </section>
+        </main>
+
+        <footer style="margin-top: 5rem; text-align: center; color: var(--text-secondary); padding-bottom: 3rem;">
+            <p>&copy; 2026 FitBuddie. Made with &hearts; for fitness enthusiasts.</p>
+        </footer>
+    </div>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

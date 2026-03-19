@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - FitBuddie</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="container fade-in">
+        <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem;">
+            <div>
+                <h1 style="font-size: 2rem; background: var(--secondary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Admin Panel</h1>
+                <p style="color: var(--text-secondary);">Manage All Fitness Enthusiasts</p>
+            </div>
+            <a href="/" class="btn btn-primary" style="font-size: 0.9rem; padding: 10px 20px;">View Site</a>
+        </header>
+
+        <main>
+            <section class="glass-card" style="padding: 0; overflow: hidden; border-radius: 20px;">
+                <div class="admin-table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Goal</th>
+                                <th>Intensity</th>
+                                <th>Additional Info</th>
+                                <th style="text-align: center;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if users %}
+                                {% for user in users %}
+                                <tr>
+                                    <td style="font-weight: 600;">{{ user.username }}</td>
+                                    <td>
+                                        <span style="background: rgba(99, 102, 241, 0.1); color: #6366f1; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem;">
+                                            {{ user.goal }}
+                                        </span>
+                                    </td>
+                                    <td>{{ user.intensity }}</td>
+                                    <td style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text-secondary);">
+                                        {{ user.info or '-' }}
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <form action="/delete/{{ user.id }}" method="POST" style="display: inline;">
+                                            <button type="submit" style="background: none; border: none; cursor: pointer; color: #ef4444; transition: var(--transition-smooth);" title="Delete User">
+                                                <i data-lucide="trash-2" style="width: 18px;"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="5" style="text-align: center; padding: 4rem; color: var(--text-secondary);">
+                                        <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+                                            <i data-lucide="users" style="width: 48px; height: 48px; opacity: 0.3;"></i>
+                                            <p>No users found yet. Start generating plans!</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+
+        <footer style="margin-top: 5rem; text-align: center; color: var(--text-secondary); padding-bottom: 3rem;">
+            <p>&copy; 2026 FitBuddie Admin Panel</p>
+        </footer>
+    </div>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

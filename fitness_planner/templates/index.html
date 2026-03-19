@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitBuddie - AI Fitness Planner</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="container fade-in">
+        <header style="text-align: center; margin-bottom: 3rem;">
+            <h1 style="font-size: 3rem; margin-bottom: 0.5rem; background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">FitBuddie AI</h1>
+            <p style="color: var(--text-secondary); font-size: 1.1rem;">Your Personalized Journey to Peak Performance</p>
+        </header>
+
+        <main style="display: flex; flex-direction: column; align-items: center; gap: 4rem;">
+            <!-- Main Form Card -->
+            <section class="glass-card" style="width: 100%; max-width: 600px;">
+                <h2 style="margin-bottom: 2rem; text-align: center;">Generate Your Plan</h2>
+                <form action="/generate" method="POST">
+                    <div class="form-group">
+                        <label for="username">FullName / Nickname</label>
+                        <input type="text" id="username" name="username" placeholder="e.g. Alex" required>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                        <div class="form-group">
+                            <label for="goal">Fitness Goal</label>
+                            <select id="goal" name="goal" required>
+                                <option value="Weight Loss">Weight Loss</option>
+                                <option value="Muscle Gain">Muscle Gain</option>
+                                <option value="Endurance">Endurance</option>
+                                <option value="Flexibility">Flexibility</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="intensity">Intensity level</label>
+                            <select id="intensity" name="intensity" required>
+                                <option value="Beginner">Beginner</option>
+                                <option value="Intermediate">Intermediate</option>
+                                <option value="Advanced">Advanced</option>
+                                <option value="Elite">Elite</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="info">Additional Info (Injuries, Equipment, etc.)</label>
+                        <textarea id="info" name="info" rows="3" placeholder="Tell us more about yourself..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.1rem; margin-top: 1rem;">
+                        Generate My Plan
+                    </button>
+                </form>
+            </section>
+
+            <!-- Testimonials Section -->
+            <section style="width: 100%;">
+                <h2 style="text-align: center; margin-bottom: 2.5rem;">Trusted by Athletes</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                    <div class="glass-card" style="padding: 2rem;">
+                        <p style="font-style: italic; margin-bottom: 1rem;">"FitBuddie transformed my routine. The AI knows exactly when to push me!"</p>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--secondary-gradient);"></div>
+                            <div>
+                                <h4 style="font-size: 0.9rem;">Sarah Jenkins</h4>
+                                <p style="font-size: 0.8rem; color: var(--text-secondary);">Marathon Runner</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card" style="padding: 2rem;">
+                        <p style="font-style: italic; margin-bottom: 1rem;">"Cleanest UI I've ever used. The 7-day plans are perfectly tailored."</p>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--primary-gradient);"></div>
+                            <div>
+                                <h4 style="font-size: 0.9rem;">Mark Rivera</h4>
+                                <p style="font-size: 0.8rem; color: var(--text-secondary);">Powerlifter</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Trust Signals -->
+            <section style="display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; opacity: 0.7;">
+                <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem;">
+                    <i data-lucide="shield-check" style="color: #43e97b;"></i> Encrypted Data
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem;">
+                    <i data-lucide="zap" style="color: #00c6fb;"></i> Instant AI Generation
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem;">
+                    <i data-lucide="award" style="color: #6366f1;"></i> Expert Backed
+                </div>
+            </section>
+        </main>
+
+        <footer style="margin-top: 5rem; text-align: center; color: var(--text-secondary); padding-bottom: 3rem;">
+            <p>&copy; 2026 FitBuddie. Made with &hearts; for fitness enthusiasts.</p>
+        </footer>
+    </div>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
